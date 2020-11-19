@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +28,22 @@
                         home
                     </a>
                 </li>
-                <li>
-                    <a href="signup.php">
-                        signup
-                    </a>
-                </li>
-                <li>
-                    <a href="index.php">
-                        login
-                    </a>
-                </li>
+                <?php if (isset($_SESSION["shopuser"])) : ?>
+                    <li><a href='profile.php'>profile</a></li>
+                    <li><a href='includes/logout.inc.php'>logout</a></li>
+                <?php else : ?>
+                    <li>
+                        <a href="signup.php">
+                            signup
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.php">
+                            login
+                        </a>
+                    </li>
+                <?php endif ?>
+
             </ul>
         </nav>
     </header>

@@ -1,0 +1,14 @@
+.item-container {
+    columns: 4;
+}
+
+.item-card {
+    width: 100%;
+    break-inside: avoid;
+}
+
+.item-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

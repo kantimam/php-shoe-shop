@@ -1,15 +1,14 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$name = "shop";
+$dbHost = "localhost";
+$dbUser = "root";
+$dbPassword = "";
+$dbName = "shop";
 
 
-$conn = mysqli_connect($host, $user, $password, $name);
+$conn = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
 
 if (!$conn) {
     die("connection to db failed" . mysqli_connect_error());
 } else {
-    echo "succes";
 }

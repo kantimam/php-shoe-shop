@@ -4,11 +4,7 @@ include_once 'header.php'
 
 <main>
     <div class="container">
-        <form action="includes/signup.inc.php" method="post">
-            <div class="form-group">
-                <label for="user_name">username</label>
-                <input type="text" class="form-control" name="name" id="user_name" required>
-            </div>
+        <form action="includes/login.inc.php" method="post">
 
             <div class="form-group">
                 <label for="user_email">email</label>
@@ -18,11 +14,6 @@ include_once 'header.php'
             <div class="form-group">
                 <label for="user_password">password</label>
                 <input type="password" class="form-control" name="password" id="user_password" required>
-            </div>
-
-            <div class="form-group">
-                <label for="user_password_repeat">repeat password</label>
-                <input type="password" class="form-control" name="password_repeat" id="user_password_repeat" required>
             </div>
 
             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
