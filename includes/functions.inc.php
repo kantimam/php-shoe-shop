@@ -7,8 +7,7 @@ function getUserOrFail($conn, $email)
     $stmt = mysqli_stmt_init($conn);
     // check if prepared statement is valid
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        header("location: ../signup.php?error=sqlError");
-        exit();
+        return false;
     }
 
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -19,8 +18,7 @@ function getUserOrFail($conn, $email)
     if ($row = mysqli_fetch_assoc($result)) {
         return $row;
     } else {
-        $result = false;
-        return $result;
+        return false;
     }
 
     mysqli_stmt_close($stmt);
@@ -32,6 +30,7 @@ function createUser($conn, $name, $email, $password)
     $stmt = mysqli_stmt_init($conn);
     // check if prepared statement is valid
     if (!mysqli_stmt_prepare($stmt, $query)) {
+        // otherwise redirect to signup page with some info about the error
         header("location: ../signup.php?error=sqlError");
         exit();
     }

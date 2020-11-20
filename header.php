@@ -29,7 +29,7 @@ session_start();
                     </a>
                 </li>
                 <?php if (isset($_SESSION["shopuser"])) : ?>
-                    <li><a href='profile.php'>profile</a></li>
+                    <li><a href='profile.php'><?php echo $_SESSION["shopuser"] ?></a></li>
                     <li><a href='includes/logout.inc.php'>logout</a></li>
                 <?php else : ?>
                     <li>

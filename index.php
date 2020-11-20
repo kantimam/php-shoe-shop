@@ -30,9 +30,9 @@ $result = mysqli_query($conn, "SELECT * FROM items");
             const res = await fetch(`includes/getitem.inc.php?id=${itemId}`, {
                 redirect: 'follow'
             });
-            if (res.redirected) {
+            /* if (res.redirected) {
                 window.location.href = "/shop/login.php"
-            }
+            } */
             const json = await res.json();
             console.log(json);
         } catch (error) {
