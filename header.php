@@ -17,7 +17,7 @@ session_start();
 </head>
 
 <body>
-    <header class="bg-light">
+    <header class="bg-light sticky-top">
         <nav class="navbar container navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="index.php">
                 shop
@@ -30,6 +30,7 @@ session_start();
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                     <?php if (isset($_SESSION["shopuser"])) : ?>
+                        <li class="nav-item"><a class="nav-link" href='includes/createitem.inc.php'>add</a></li>
                         <li class="nav-item"><a class="nav-link" href='profile.php'><?php echo $_SESSION["shopuser"]["name"] ?></a></li>
                         <li class="nav-item"><a class="nav-link" href='includes/logout.inc.php'>logout</a></li>
                     <?php else : ?>

@@ -31,7 +31,7 @@ if (!isset($result)) {
 ?>
 
 <link rel="stylesheet" href="styles/styles.css">
-<main>
+<main class="py-4">
     <div class="container">
         <h1>Welcome <?php echo $_SESSION["shopuser"]["name"] ?></h1>
         <h2>shopping cart</h2>

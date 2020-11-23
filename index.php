@@ -14,7 +14,7 @@ if (isset($_GET["q"])) {
 
 ?>
 <link rel="stylesheet" href="styles/styles.css">
-<main>
+<main class="py-4">
     <div class="container">
         <?php handleError("failedtoget", "could not get this item please try again later") ?>
         <div class="item-container">

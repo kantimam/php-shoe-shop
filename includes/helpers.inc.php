@@ -10,3 +10,15 @@ function handleError($errorType, $errorMessage)
     }
     return;
 }
+
+
+function handleMessage($messageType, $message)
+{
+    if (isset($_GET["message"])) {
+        if ($_GET["message"] == $messageType) {
+            echo '<p class="text-success">' . $message . '</p>';
+            return;
+        }
+    }
+    return;
+}

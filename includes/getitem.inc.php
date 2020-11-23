@@ -8,7 +8,7 @@ if (isset($_GET["id"])) {
     require_once 'database.inc.php';
 
     $itemId = $_GET["id"];
-    $userId = $_SESSION["shopuser"];
+    $userId = $_SESSION["shopuser"]["id"];
 
     function buyItem($conn, $userId, $itemId)
     {
