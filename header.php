@@ -17,33 +17,40 @@ session_start();
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                asd
-            </div>
-            <ul>
-                <li>
-                    <a href="index.php">
-                        home
-                    </a>
-                </li>
-                <?php if (isset($_SESSION["shopuser"])) : ?>
-                    <li><a href='profile.php'><?php echo $_SESSION["shopuser"] ?></a></li>
-                    <li><a href='includes/logout.inc.php'>logout</a></li>
-                <?php else : ?>
-                    <li>
-                        <a href="signup.php">
-                            signup
-                        </a>
-                    </li>
-                    <li>
-                        <a href="login.php">
-                            login
-                        </a>
-                    </li>
-                <?php endif ?>
+    <header class="bg-light">
+        <nav class="navbar container navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.php">
+                shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
 
-            </ul>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                    <?php if (isset($_SESSION["shopuser"])) : ?>
+                        <li class="nav-item"><a class="nav-link" href='profile.php'><?php echo $_SESSION["shopuser"]["name"] ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href='includes/logout.inc.php'>logout</a></li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signup.php">
+                                signup
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">
+                                login
+                            </a>
+                        </li>
+                    <?php endif ?>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="GET" action="index.php">
+                    <input placeholder="search for name" class="form-control mr-sm-2" type="search" placeholder="Search" name="q">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
         </nav>
     </header>

@@ -1,14 +1,24 @@
 .item-container {
-    columns: 4;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    grid-gap: 0.6rem;
 }
 
 .item-card {
     width: 100%;
     break-inside: avoid;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-card img {
     width: 100%;
-    height: auto;
+    height: 18rem;
+    overflow: hidden;
     object-fit: cover;
+}
+
+.item-card h2 {
+    margin-top: auto;
 }

@@ -8,7 +8,7 @@ include_once 'includes/database.inc.php';
 
 function getAllUserItems($conn, $userId)
 {
-    $query = "SELECT i.id, i.name, i.price, i.image FROM items i INNER JOIN shopping_cart sc ON i.id = sc.item_id WHERE sc.user_id = ? ORDER BY i.name;";
+    $query = "SELECT i.id, i.name, i.price, i.image, i.description FROM items i INNER JOIN shopping_cart sc ON i.id = sc.item_id WHERE sc.user_id = ? ORDER BY i.name;";
     $stmt = mysqli_stmt_init($conn);
     // check if prepared statement is valid
     if (!mysqli_stmt_prepare($stmt, $query)) {
@@ -22,10 +22,9 @@ function getAllUserItems($conn, $userId)
     return $result;
 }
 
-$items = getAllUserItems($conn, $_SESSION["shopuser"]);
-/* var_dump(mysqli_fetch_array($items));
-exit(); */
-if (!isset($items)) {
+$result = getAllUserItems($conn, $_SESSION["shopuser"]["id"]);
+
+if (!isset($result)) {
     echo "database error";
     exit();
 }
@@ -34,16 +33,21 @@ if (!isset($items)) {
 <link rel="stylesheet" href="styles/styles.css">
 <main>
     <div class="container">
+        <h1>Welcome <?php echo $_SESSION["shopuser"]["name"] ?></h1>
+        <h2>shopping cart</h2>
         <div class="item-container">
             <!-- create a card for each item -->
-            <?php while ($row = mysqli_fetch_array($items)) : ?>
-                <div class="card p-2 item-card">
-                    <img src="<?php echo $row["image"] ?>" alt="">
-                    <p><?php echo $row["name"] ?></p>
-                    <p><?php echo $row["price"] ?> Euro</p>
+            <?php if ($result) {
+                while ($row = mysqli_fetch_array($result)) { ?>
+                    <div class="card p-2 item-card">
+                        <img src="<?php echo $row["image"] ?>" alt="">
+                        <h2><?php echo $row["name"] ?></h2>
+                        <p><?php echo str_replace('.', ',', $row["price"]) ?> Euro</p>
+                        <p><?php echo $row["description"] ?></p>
 
-                </div>
-            <?php endwhile ?>
+                    </div>
+            <?php }
+            } ?>
         </div>
 
     </div>

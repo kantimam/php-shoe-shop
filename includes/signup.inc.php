@@ -7,7 +7,6 @@ if (isset($_POST["submit"])) {
 
 
     require_once 'database.inc.php';
-    require_once 'functions.inc.php';
 
 
     /* handle empty inputs */
@@ -36,6 +35,7 @@ if (isset($_POST["submit"])) {
         mysqli_stmt_execute($stmt);
 
         $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
 
         if ($row = mysqli_fetch_assoc($result)) {
             return $row;
@@ -43,9 +43,8 @@ if (isset($_POST["submit"])) {
             $result = false;
             return $result;
         }
-
-        mysqli_stmt_close($stmt);
     }
+
 
     function createUser($conn, $name, $email, $password)
     {
@@ -75,7 +74,7 @@ if (isset($_POST["submit"])) {
 
 
 
-    header("location: ../");
+    header("location: ../login.php");
 } else {
     header("location: ../signup.php");
 }
