@@ -6,7 +6,8 @@ include_once 'includes/helpers.inc.php';
 
 <main class="py-4">
     <div class="container">
-        <form action="includes/login.inc.php" method="post">
+        <form action="includes/login.inc.php" method="post" class="card p-2">
+            <h1>login</h1>
 
             <div class="form-group">
                 <label for="user_email">email</label>

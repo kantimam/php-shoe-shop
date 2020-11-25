@@ -27,9 +27,15 @@ if (isset($_GET["q"])) {
                         <p><?php echo str_replace('.', ',', $row["price"])  ?> Euro</p>
                         <p><?php echo $row["description"] ?></p>
 
-                        <a class="btn btn-primary" href="includes/getitem.inc.php?id=<?php echo $row["id"] ?>">
-                            buy
-                        </a>
+                        <?php if (isset($_SESSION["shopuser"])) : ?>
+                            <a class="btn btn-primary" href="includes/getitem.inc.php?id=<?php echo $row["id"] ?>">
+                                order
+                            </a>
+                        <?php else : ?>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+                                order
+                            </button>
+                        <?php endif; ?>
                     </div>
             <?php }
             } ?>
@@ -38,6 +44,28 @@ if (isset($_GET["q"])) {
 
     </div>
 </main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                you need to be logged in in order to order items
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="login.php" class="btn btn-primary">login</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 include_once 'footer.php'

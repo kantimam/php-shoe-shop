@@ -46,9 +46,9 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    function createItem($conn, $name, $price, $description, $image)
+    function createItem($conn, $name, $price, $description, $image, $userId)
     {
-        $query = "INSERT INTO items (name, price, description, image) VALUES (?, ?, ?, ?);";
+        $query = "INSERT INTO items (name, price, description, image, user_id) VALUES (?, ?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         // check if prepared statement is valid
         if (!mysqli_stmt_prepare($stmt, $query)) {
@@ -57,12 +57,12 @@ if (isset($_POST["submit"])) {
         }
 
 
-        mysqli_stmt_bind_param($stmt, "sdss", $name, $price, $description, $image);
+        mysqli_stmt_bind_param($stmt, "sdssi", $name, $price, $description, $image, $userId);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     }
 
-    createItem($conn, $name, $price, $description, $filePath);
+    createItem($conn, $name, $price, $description, $filePath, $userId);
 
     header("location: ../create.php?message=success");
 } else {

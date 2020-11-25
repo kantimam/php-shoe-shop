@@ -32,7 +32,7 @@ session_start();
                     <?php if (isset($_SESSION["shopuser"])) : ?>
                         <li class="nav-item"><a class="nav-link" href='includes/createitem.inc.php'>add</a></li>
                         <li class="nav-item"><a class="nav-link" href='profile.php'><?php echo $_SESSION["shopuser"]["name"] ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href='includes/logout.inc.php'>logout</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-danger text-white" href='includes/logout.inc.php'>logout</a></li>
                     <?php else : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="signup.php">

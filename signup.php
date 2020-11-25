@@ -6,7 +6,9 @@ include_once 'includes/helpers.inc.php';
 
 <main class="py-4">
     <div class="container">
-        <form action="includes/signup.inc.php" method="post">
+        <form action="includes/signup.inc.php" method="post" class="card p-2">
+            <h1>sign up</h1>
+
             <div class="form-group">
                 <label for="user_name">name</label>
                 <input type="text" class="form-control" name="name" id="user_name" required>
