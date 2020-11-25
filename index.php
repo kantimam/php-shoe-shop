@@ -26,7 +26,6 @@ if (isset($_GET["q"])) {
                         <h2><?php echo $row["name"] ?></h2>
                         <p><?php echo str_replace('.', ',', $row["price"])  ?> Euro</p>
                         <p><?php echo $row["description"] ?></p>
-
                         <?php if (isset($_SESSION["shopuser"])) : ?>
                             <a class="btn btn-primary" href="includes/getitem.inc.php?id=<?php echo $row["id"] ?>">
                                 order
@@ -47,7 +46,7 @@ if (isset($_GET["q"])) {
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

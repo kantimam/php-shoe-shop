@@ -39,8 +39,9 @@ if (isset($_POST["submit"])) {
     }
 
     $newImageName = uniqid("", true) . "." . $imageFileExt;
-    $filePath = '../uploads/' . $newImageName;
-    $uploadSucces = move_uploaded_file($imageTmpName, $filePath);
+    $serverFilePath = 'uploads/' . $newImageName;
+    $relativeFilePath = '../' . $serverFilePath;
+    $uploadSucces = move_uploaded_file($imageTmpName, $relativeFilePath);
     if (!$uploadSucces) {
         header("location: ../create.php?error=failedupload");
         exit();
@@ -62,7 +63,7 @@ if (isset($_POST["submit"])) {
         mysqli_stmt_close($stmt);
     }
 
-    createItem($conn, $name, $price, $description, $filePath, $userId);
+    createItem($conn, $name, $price, $description, $serverFilePath, $userId);
 
     header("location: ../create.php?message=success");
 } else {
