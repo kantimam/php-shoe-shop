@@ -10,17 +10,20 @@ include_once 'includes/helpers.inc.php';
 
 function getAllUserOrders($conn, $userId)
 {
-    $query = "SELECT i.id, i.name, i.price, i.image, i.description, sc.id AS sc_id FROM items i INNER JOIN shopping_cart sc ON i.id = sc.item_id WHERE sc.user_id = ? ORDER BY i.name;";
+    $query = "SELECT i.id, i.name, i.praice, i.image, i.description, sc.id AS sc_id FROM items i INNER JOIN shopping_cart sc ON i.id = sc.item_id WHERE sc.user_id = ? ORDER BY i.name;";
     $stmt = mysqli_stmt_init($conn);
     // check if prepared statement is valid
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        return false;
+        include_once('includes/errorscreen.inc.php'); // if there was an error in the query include this script
+        errorScreen("could not get user orders from the database", mysqli_stmt_error($stmt)); // use the errorScreen function from the just imported script to display a nicely formatted error
+        exit(); // exit this script
     }
 
     mysqli_stmt_bind_param($stmt, "i", $userId);
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
     return $result;
 }
 
@@ -30,22 +33,22 @@ function getAllUserItems($conn, $userId)
     $stmt = mysqli_stmt_init($conn);
     // check if prepared statement is valid
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        return false;
+        echo "could not get user items from the database"; // should never show the user more than that actually rather show an illustration of a sad panda and say something went wrong
+        echo mysqli_stmt_error($stmt); // but lets show the error anyway
+        mysqli_stmt_close($stmt);
+        exit(); // exit this script
     }
 
     mysqli_stmt_bind_param($stmt, "i", $userId);
     mysqli_stmt_execute($stmt);
 
     $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
     return $result;
 }
 
 $orders = getAllUserOrders($conn, $_SESSION["shopuser"]["id"]);
 
-if (!isset($orders)) {
-    echo "database error";
-    exit();
-}
 
 $items = getAllUserItems($conn, $_SESSION["shopuser"]["id"]);
 
